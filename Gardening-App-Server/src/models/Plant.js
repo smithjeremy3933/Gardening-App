@@ -10,7 +10,8 @@ const plantDetailSchema = new mongoose.Schema({
   timestamp: Number,
   detail: {
     scientificName: String,
-    location: String,
+    soilbedLocation: String,
+    season: String,
     status: String,
     plantDetailNotes: [plantNoteSchema]
   }
