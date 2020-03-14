@@ -15,14 +15,19 @@ router.get("/plants", async (req, res) => {
 });
 
 router.post("/plants", async (req, res) => {
-  const { plantName, plantDetail } = req.body;
+  const { plantName, plantStatus } = req.body;
 
   if (!plantName) {
     return res.status(422).send({ error: "You must atleast include a name." });
   }
 
   try {
-    const plant = new Plant({ plantName, plantDetail, userId: req.user._id });
+    const plant = new Plant({
+      plantName,
+      plantStatus,
+      userId: req.user._id
+    });
+    console.log(plant);
     await plant.save();
     res.send(plant);
   } catch (err) {

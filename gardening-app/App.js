@@ -4,6 +4,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { setNavigator } from "./src/navigationRef";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { Provider as PlantProvider } from "./src/context/PlantContext";
 import AccountScreen from "./src/screens/AccountScreen";
 import PlantCreateScreen from "./src/screens/PlantCreateScreen";
 import PlantDetailScreen from "./src/screens/PlantDetailScreen";
@@ -46,12 +47,14 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <AuthProvider>
-      <App
-        ref={navigator => {
-          setNavigator(navigator);
-        }}
-      />
-    </AuthProvider>
+    <PlantProvider>
+      <AuthProvider>
+        <App
+          ref={navigator => {
+            setNavigator(navigator);
+          }}
+        />
+      </AuthProvider>
+    </PlantProvider>
   );
 };

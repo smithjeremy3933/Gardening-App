@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 
-const plantNoteSchema = new mongoose.Schema({
-  timestamp: Number,
-  note: String,
-  health: String
-});
+// const plantNoteSchema = new mongoose.Schema({
+//   timestamp: Number,
+//   note: String,
+//   health: String
+// });
 
-const plantDetailSchema = new mongoose.Schema({
-  timestamp: Number,
-  detail: {
-    scientificName: String,
-    soilbedLocation: String,
-    season: String,
-    status: String,
-    plantDetailNotes: [plantNoteSchema]
-  }
-});
+// const plantDetailSchema = new mongoose.Schema({
+//   timestamp: Number,
+//   detail: {
+//     scientificName: String,
+//     soilbedLocation: String,
+//     season: String,
+//     status: String,
+//     plantDetailNotes: [plantNoteSchema]
+//   }
+// });
 
 const plantSchema = new mongoose.Schema({
   userId: {
@@ -25,12 +25,16 @@ const plantSchema = new mongoose.Schema({
 
   plantName: {
     type: String,
+    default: "",
     required: true
   },
 
-  plantStatus: String,
+  plantStatus: {
+    type: String,
+    default: ""
+  }
 
-  plantDetail: [plantDetailSchema]
+  // plantDetail: [plantDetailSchema]
 });
 
 mongoose.model("Plant", plantSchema);
